@@ -1,30 +1,74 @@
 /* src/assets/styles/main.css */
-nav {
-    background-color: #2c3e50;
-    padding: 10px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
   
-  nav ul {
-    list-style: none;
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+  }
+  
+  .app-container {
     display: flex;
-    justify-content: center;
-    gap: 20px;
   }
   
-  nav a {
+  .main-content {
+    margin-left: 240px; /* Adjust based on Sidebar width */
+    padding: 20px;
+    width: 100%;
+  }
+  
+  h2 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  button {
+    background-color: #4CAF50;
     color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  
+  li {
+    margin: 10px 0;
+  }
+  
+  ul li a {
     text-decoration: none;
+    color: #333;
     font-size: 18px;
   }
   
-  nav button {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+  ul li a:hover {
+    color: #4CAF50;
+  }
+.locator-page {
+    padding: 20px;
   }
   
-  nav button:hover {
-    background-color: #c0392b;
+  .locator-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
   }
