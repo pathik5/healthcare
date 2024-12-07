@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Sidebar from './components/Sidebar'; // Import Sidebar component
+import Sidebar from './components/Sidebar'; 
 import Profile from './pages/Profile'; // Import Profile page
 import Login from './pages/Login'; // Import Login page
 import Signup from './pages/Signup'; // Import Signup page
@@ -37,18 +37,22 @@ const App = () => {
   return (
     <Router>
       <div className="app-container">
-        {/* Pass user and logout function to Sidebar */}
+        {/* Conditionally render Sidebar if user is logged in */}
         {user && <Sidebar user={user} logout={signOut} />} {/* Show sidebar only if user is logged in */}
 
         <div className="main-content">
           <Routes>
-            {/* If not logged in, redirect to login page */}
+            {/* Default route, redirects to profile if logged in */}
             <Route path="/" element={user ? <Navigate to="/profile" /> : <Navigate to="/login" />} />
+            
+            {/* Public routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/locator" element={<LocatorPage />} />
             <Route path="/symptoms" element={<SymptomCheckerPage />} />
             <Route path="/consultation" element={<Consultation />} />
+
+            {/* Protected routes */}
             <Route path="/settings" element={<ProtectedRoute element={<Settings user={user} />} />} />
             <Route path="/profile" element={<ProtectedRoute element={<Profile user={user} />} />} />
             <Route path="/history" element={<ProtectedRoute element={<History />} />} />

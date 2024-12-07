@@ -1,9 +1,13 @@
-// src/pages/Dashboard.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import '../assets/styles/Dashboard.css';  // Import Dashboard styles
 
-const Dashboard = () => {
+const Dashboard = ({ user }) => {
+  // Redirect if user is not logged in
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
   return (
     <div className="dashboard-container">
       <h1>Welcome to the Healthcare Dashboard</h1>

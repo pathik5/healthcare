@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../assets/styles/Signup.css";
@@ -13,7 +11,7 @@ const Signup = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Basic validation for password match and empty fields
@@ -27,20 +25,33 @@ const Signup = () => {
       return;
     }
 
-    // Create a user object
-    const newUser = {
-      name,
-      email,
-      phone,
-      password,
-      location: '', // Initially empty, user can update it later in the profile
-    };
+    // Regex for phone number validation (basic check for 10 digits)
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phoneRegex.test(phone)) {
+      setError('Please enter a valid phone number');
+      return;
+    }
 
-    // Save user to localStorage
-    localStorage.setItem('user', JSON.stringify(newUser));
+    try {
+      // Replace with your API call for signup if backend exists
+      const response = await fetch('http://localhost:5000/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, password }),
+      });
 
-    // Redirect to login page
-    navigate('/login');
+      const data = await response.json();
+
+      if (data.message === 'User created successfully') {
+        // If signup is successful, navigate to login page
+        navigate('/login');
+      } else {
+        setError(data.message); // Display error message from server
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('There was an error with the signup. Please try again.');
+    }
   };
 
   return (

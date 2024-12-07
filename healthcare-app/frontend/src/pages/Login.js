@@ -19,7 +19,7 @@ const Login = () => {
       // Handle login logic (send request to backend)
       const loginData = { email, password };
 
-      fetch('/auth/login', {
+      fetch('http://127.0.0.1:5000/auth/login', { 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(loginData),
@@ -40,7 +40,7 @@ const Login = () => {
       // Handle sign up logic (send request to backend)
       const signUpData = { username, email, password, phone_number: phoneNumber, location };
 
-      fetch('/auth/signup', {
+      fetch('http://127.0.0.1:5000/auth/signup', { // Updated URL to point to your backend
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(signUpData),

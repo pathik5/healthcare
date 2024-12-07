@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
@@ -29,6 +29,11 @@ const RoutesSetup = () => {
     }
   }, []);
 
+  // Protected Route Component to check if the user is logged in
+  const ProtectedRoute = ({ element }) => {
+    return user ? element : <Navigate to="/login" />;
+  };
+
   return (
     <Router>
       <Routes>
@@ -37,12 +42,12 @@ const RoutesSetup = () => {
         <Route path="/signup" element={<Signup />} />
 
         {/* Protected Routes */}
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/locator" element={<LocatorPage />} />
-        <Route path="/symptoms" element={<SymptomCheckerPage />} />
-        <Route path="/settings" element={<Settings user={user} />} />
-        <Route path="/profile" element={<Profile user={user} />} />
-        <Route path="/history" element={<History consultations={consultations} />} />
+        <Route path="/" element={<ProtectedRoute element={<Dashboard />} />} />
+        <Route path="/locator" element={<ProtectedRoute element={<LocatorPage />} />} />
+        <Route path="/symptoms" element={<ProtectedRoute element={<SymptomCheckerPage />} />} />
+        <Route path="/settings" element={<ProtectedRoute element={<Settings user={user} />} />} />
+        <Route path="/profile" element={<ProtectedRoute element={<Profile user={user} />} />} />
+        <Route path="/history" element={<ProtectedRoute element={<History consultations={consultations} />} />} />
       </Routes>
     </Router>
   );
