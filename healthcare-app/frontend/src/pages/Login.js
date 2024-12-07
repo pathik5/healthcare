@@ -1,15 +1,14 @@
-// src/pages/Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../assets/styles/Login.css";
 
 const Login = () => {
-  const [isLogin, setIsLogin] = useState(true); // State to toggle between login and signup
+  const [isLogin, setIsLogin] = useState(true); 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState(''); // Only needed for Sign Up
-  const [phoneNumber, setPhoneNumber] = useState(''); // Only needed for Sign Up
-  const [location, setLocation] = useState(''); // Only needed for Sign Up
+  const [username, setUsername] = useState(''); 
+  const [phoneNumber, setPhoneNumber] = useState(''); 
+  const [location, setLocation] = useState(''); 
 
   const navigate = useNavigate();
 
